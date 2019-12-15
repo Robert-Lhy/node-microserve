@@ -1,0 +1,19 @@
+{
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [{
+    "name": "Debugger TS Program",
+    "type": "node",
+    "request": "launch",
+    "env": {
+      "NODE_ENV": "test"
+    },
+    "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+    "args": [
+      "./src/app.ts"
+    ],
+    "cwd": "${workspaceRoot}",
+    "protocol": "inspector"
+  }]
+}

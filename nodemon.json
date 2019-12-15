@@ -1,0 +1,13 @@
+{
+  "watch": [
+    "./src"
+  ],
+  "ignore": [
+    "./src/@decorator",
+    "./src/@types",
+    "./node_modules"
+  ],
+  "ext": "ts,tsx",
+  "exec": "ts-node ./src/app.ts",
+  "verbose": true
+}

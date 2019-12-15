@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .my-table {
+      border: 1px solid #eee;
+      width: 100%;
+    }
+
+    tr td {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #eee;
+      padding-left: 30px;
+    }
+
+    th {
+      height: 50px;
+      line-height: 50px;
+      border-bottom: 4px solid #eee;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .form {
+      margin: auto;
+      margin-bottom: 15px;
+      width: 350px;
+    }
+
+    input {
+      padding: 10px 10px;
+      outline: none;
+      display: block;
+      margin-top: 15px;
+      width: 350px;
+    }
+  </style>
+  <script>
+    function deleteItem(item) {
+      fetch('/user/delete', {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: item
+      }).then(res => {
+        res.json().then(data => {
+          console.log(data && location.reload())
+        })
+      })
+    }
+
+    function submit() {
+      const inputs = document.getElementsByTagName('input')
+      const body = {}
+      Array.from(inputs).forEach((ele, i) => {
+        body[ele.name] = ele.value
+      })
+      if (body.address && body.age && body.email && body.phoneNo) {
+        fetch('/user/save', {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'post',
+          body: JSON.stringify(body)
+        }).then(res => {
+          res.json().then(data => {
+            console.log(data && location.reload())
+          })
+        })
+      }
+    }
+
+    function updateItem(item) {
+      const obj = JSON.parse(item)
+      Object.keys(obj).forEach(key => {
+        console.log(key)
+        if (document.getElementsByName(key)[0]) {
+          document.getElementsByName(key)[0].value = obj[key]
+        }
+
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <div class="form">
+    <input name="name" required placeholder="请输入姓名" type="text">
+    <input name="email" required type="email" placeholder="请输入邮箱">
+    <input name="phoneNo" required pattern="^1[3456789]\d{9}$" placeholder="请输入手机号码">
+    <input name="age" required type="number" placeholder="请输入年龄">
+    <input name="address" required placeholder="请输入家庭地址">
+    <button onclick="submit()">提交数据</button>
+  </div>
+  <table class="my-table">
+    <thead class="head">
+      <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>手机号码📱</td>
+        <td>邮箱📮</td>
+        <td>地址👨‍👩‍👧‍👦</td>
+        <td>入学时间😸</td>
+        <td>操作🔧</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.data.records.forEach((elem, index) => { %>
+      <tr>
+        <td><%= elem.id %></td>
+        <td><%= elem.name %></td>
+        <td><%= elem.age %></td>
+        <td><%= elem.phoneNo %></td>
+        <td><%= elem.email %></td>
+        <td><%= elem.address %></td>
+        <td><%= new Date(elem.created).toLocaleDateString() %></td>
+        <td>
+          <button onclick="deleteItem(`<%=JSON.stringify(elem)%>`)">删除</button>
+          <button onclick="updateItem(`<%=JSON.stringify(elem)%>`)">修改</button>
+        </td>
+      </tr>
+      <%})%>
+      <tr>
+        <td>总条数</td>
+        <td colspan="6"><%= users.data.count %></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</body>
+
+</html>

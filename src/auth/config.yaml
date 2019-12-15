@@ -1,0 +1,3 @@
+dev: https://test-workstation-apiuser.selleros.cn/oauth/user
+test: https://test-workstation-apiuser.selleros.cn/oauth/user
+production: https://workstation-apiuser.selleros.cn/oauth/user

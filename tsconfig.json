@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "outDir": "./bin/",
+    "baseUrl": ".",
+    "noResolve": false,
+    "lib": ["es2017"],
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "inlineSourceMap": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "@types"
+    ],
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@/*": ["src/*"],
+      "@services/*": ["src/services/*"],
+      "@decorator": ["src/@decorator/index.ts"],
+      "@config/*": ["src/config/*"],
+      "@environment": ["src/environment/index.ts"],
+      "@db": ["src/db/index.ts"],
+      "@utils/*": ["src/utils/*"],
+      "@mappers/*": ["src/db/mappers/*"],
+      "@types/*": ["src/@types/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.yaml"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
