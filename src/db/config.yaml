@@ -1,10 +1,10 @@
 #mysql开发环境
 dev:
-  database: pingpong_user
-  host: rm-bp1z56jo7401fhcugjo.mysql.rds.aliyuncs.com
+  database: database
+  host: mysql.xxx.com
   dialect: mysql
-  password: MWTWBGxhI7QWYpD
-  username: pp_test
+  password: xxx
+  username: username
   timezone: +08:00
   pool:
     max: 5
@@ -13,10 +13,10 @@ dev:
     idle: 10000
 #mysql测试环境
 test:
-  database: pingpong_user
-  host: rm-bp1z56jo7401fhcug.mysql.rds.aliyuncs.com
+  database: database
+  host: mysql.xxx.com
   dialect: mysql
-  password: MWTWBGxhI7QWYpD
+  password: xxx
   username: pp_test
   timezone: +08:00
   pool:
@@ -26,10 +26,10 @@ test:
     idle: 10000
 #mysql生产环境
 production:
-  database: pingpong_user
-  host: rm-bp1z56jo7401fhcugjo.mysql.rds.aliyuncs.com
+  database: database
+  host: mysql.xxx.com
   dialect: mysql
-  password: MWTWBGxhI7QWYpD
+  password: xxx
   username: pp_test
   timezone: +08:00
   pool:
